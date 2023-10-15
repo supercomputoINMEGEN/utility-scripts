@@ -2,17 +2,17 @@
 
 # Function to display usage information
 usage() {
-  echo "Usage: $0 -z <directory-name for zfs share>  -q <quota>" 
+  echo "Usage: $0 -zfsdir <directory-name for zfs share>  -quota <quota>" 
   exit 1
 }
 
 # Parse command-line options using getopts
-while getopts ":z:q:" opt; do
+while getopts ":zfsdir:quota:" opt; do
   case "$opt" in
-    z)
+    zfsdir)
       zfsdir_name="$OPTARG"
       ;;
-    q)
+    quota)
       quota="$OPTARG"
       ;;
     \?)
@@ -26,9 +26,9 @@ while getopts ":z:q:" opt; do
   esac
 done
 
-# Check if the required -z argument is missing
-if [ -z "$zfsdir_name" ] || [ -z "$quota" ]; then
-  echo "Error: Both -z and -q are required."
+# Check if the required any argument is missing
+if [ -zfsdir "$zfsdir_name" ] || [ -quota "$quota" ]; then
+  echo "Error: Both -zfsdir and -quota are required."
   usage
 fi
 
