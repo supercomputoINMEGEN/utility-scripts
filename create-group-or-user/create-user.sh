@@ -2,7 +2,7 @@
 
 # Define a usage function
 usage() {
-  echo "Usage: $0 -G <group_name> -i <UID> -u <username> -d <expire_date> -s <yes/no> -c <yes/no> [-z <zfs_name>] [-q <quota>] [-m <mountpoint>]"
+  echo "Usage: $0 -G <group_name> -i <user_UID> -u <username> -d <expire_date> -s <yes/no> -c <yes/no> [-z <zfs_name>] [-q <quota>] [-m <mountpoint>]"
   exit 1
 }
 
@@ -13,7 +13,7 @@ while getopts "G:i:u:d:s:c:z:q:m:" opt; do
       group_name="$OPTARG"
       ;;
     i)
-      UID="$OPTARG"
+      user_UID="$OPTARG"
       ;;
     u)
       username="$OPTARG"
@@ -44,14 +44,14 @@ while getopts "G:i:u:d:s:c:z:q:m:" opt; do
 done
 
 # Check if required options are provided
-if [ -z "$group_name" ] || [ -z "$UID" ] || [ -z "$username" ] || [ -z "$expire_date" ] || [ -z "$shell_flag" ] || [ -z "$zfs_create" ]; then
+if [ -z "$group_name" ] || [ -z "$user_UID" ] || [ -z "$username" ] || [ -z "$expire_date" ] || [ -z "$shell_flag" ] || [ -z "$zfs_create" ]; then
   echo "Missing required options."
   usage
 fi
 
-# Check if UID is already used
-if id "$UID" &>/dev/null; then
-  echo "UID $UID is already in use."
+# Check if user_UID is already used
+if id "$user_UID" &>/dev/null; then
+  echo "user_UID $user_UID is already in use."
   exit 1
 fi
 
@@ -83,7 +83,7 @@ fi
 
 useradd \
   -g "$group_name" \
-  -u "$UID" \
+  -u "$user_UID" \
   -d "$mountpoint" \
   -s "$the_shell" \
   -e "$expire_date" \
