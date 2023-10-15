@@ -2,7 +2,7 @@
 
 # Define a usage function
 usage() {
-  echo "Usage: $0 -G <group_name> -i <user_UID> -u <username> -d <expire_date> -s <yes/no> -c <yes/no> [-z <zfs_name>] [-q <quota>] [-m <mountpoint>]"
+  echo "Usage: $0 -G <group_name> -i <user_UID> -u <username> -d <expire_date> -s <yes/no> -c <yes/no> [-z <zfs_name>] [-q <quota>]"
   exit 1
 }
 
@@ -33,15 +33,15 @@ while getopts "G:i:u:d:s:c:z:q:m:" opt; do
     q)
       quota="$OPTARG"
       ;;
-    m)
-      mountpoint="$OPTARG"
-      ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
       usage
       ;;
   esac
 done
+
+# define defaults
+mountpoint="/home/$username"
 
 # Check if required options are provided
 if [ -z "$group_name" ] || [ -z "$user_UID" ] || [ -z "$username" ] || [ -z "$expire_date" ] || [ -z "$shell_flag" ] || [ -z "$zfs_create" ]; then
