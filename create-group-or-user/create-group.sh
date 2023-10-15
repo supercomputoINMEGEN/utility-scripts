@@ -69,7 +69,8 @@ groupadd -g "$gid" "$group_name" \
     bash ./create-zfs.sh -z "$zfs_name" -q "$quota" -m "$mountpoint"
     # Change the owner group of the mountpoint to the group name
     if [ -n "$mountpoint" ]; then
-      chown -R :"$group_name" "$mountpoint"
+      chown -R :"$group_name" "$mountpoint" \
+      && chmod g+w -R  "$mountpoint"
     fi
   else
     echo "Error: Missing arguments for ZFS creation."
