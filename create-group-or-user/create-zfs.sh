@@ -39,7 +39,7 @@ fi
 if [ -d "$mountpoint" ]; then
   # Check if the mount point is not empty
   if [ -n "$(ls -A $mountpoint)" ]; then
-    echo "Error: Mount point '$mountpoint' is not empty. Script exiting."
+    echo "Error: Mount point '$mountpoint' is not empty. Provide a valid mountpoint."
     exit 1
   fi
 fi
