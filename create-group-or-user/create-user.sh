@@ -80,5 +80,5 @@ useradd \
   -s "$the_shell" \
   -e "$expire_date" \
   "$username" \
-&& chown "$username:$username" "$mountpoint" \
+&& chown -R "$username" "$mountpoint" \
 && echo "User $username created successfully."
