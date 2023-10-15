@@ -52,9 +52,12 @@ fi
 
 # Create the ZFS directory
 zfs create -o quota="$quota" -o mountpoint="$mountpoint" "$zfsdir_name"
+
 if [ $? -eq 0 ]; then
   echo "ZFS directory '$zfsdir_name' created successfully."
 else
   echo "Error: Failed to create ZFS directory '$zfsdir_name'."
   exit 1
 fi
+
+# change the permisions
