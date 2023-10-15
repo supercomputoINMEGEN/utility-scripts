@@ -62,8 +62,9 @@ if getent group "$group_name" > /dev/null; then
   exit 1
 fi
 
-# If zfs-create is "yes," call create-zfs.sh script with -z, -q, and -m arguments
-if [ "$zfs_create" = "yes" ]; then
+# Create the group with the given GID and name
+groupadd -g "$gid" "$group_name" \
+&& if [ "$zfs_create" = "yes" ]; then        ## If zfs-create is "yes," call create-zfs.sh script with -z, -q, and -m arguments
   if [ -n "$zfs_name" ] && [ -n "$quota" ] && [ -n "$mountpoint" ]; then
     bash ./create-zfs.sh -z "$zfs_name" -q "$quota" -m "$mountpoint"
     # Change the owner group of the mountpoint to the group name
@@ -74,8 +75,5 @@ if [ "$zfs_create" = "yes" ]; then
     echo "Error: Missing arguments for ZFS creation."
     usage
   fi
-fi
-
-# Create the group with the given GID and name
-groupadd -g "$gid" "$group_name" \
+fi \
 && echo "Group creation and ZFS setup (if applicable) completed successfully."
