@@ -7,7 +7,7 @@ usage() {
 }
 
 # Parse command-line options using getopts
-while getopts ":z:" opt; do
+while getopts ":z:q:" opt; do
   case "$opt" in
     z)
       zfsdir_name="$OPTARG"
