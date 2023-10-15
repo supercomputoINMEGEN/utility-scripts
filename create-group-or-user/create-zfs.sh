@@ -59,5 +59,3 @@ else
   echo "Error: Failed to create ZFS directory '$zfsdir_name'."
   exit 1
 fi
-
-# change the permisions
