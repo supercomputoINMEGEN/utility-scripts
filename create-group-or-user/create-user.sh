@@ -72,7 +72,7 @@ fi
 if [ "$zfs_create" == "yes" ]; then
   # Call create-zfs.sh script with -z, -q, and -m arguments
   if [ -n "$zfs_name" ]; then
-    ./create-zfs.sh -z "$zfs_name" -q "$quota" -m "$mountpoint"
+    bash ./create-zfs.sh -z "$zfs_name" -q "$quota" -m "$mountpoint"
   fi
 
   # Change owner user:group in the mountpoint to username
