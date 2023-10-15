@@ -2,14 +2,14 @@
 
 # Function to display usage information
 usage() {
-  echo "Usage: $0 --zfsdir-name <directory-name>"
+  echo "Usage: $0 -z <directory-name for zfs share>"
   exit 1
 }
 
 # Parse command-line options using getopts
 while getopts ":z:" opt; do
   case "$opt" in
-    zfsdir-name)
+    z)
       zfsdir_name="$OPTARG"
       ;;
     \?)
@@ -23,9 +23,9 @@ while getopts ":z:" opt; do
   esac
 done
 
-# Check if the required --zfsdir-name argument is missing
-if [ --zfsdir-name "$zfsdir_name" ]; then
-  echo "Error: --zfsdir-name is required."
+# Check if the required -z argument is missing
+if [ -z "$zfsdir_name" ]; then
+  echo "Error: -z is required."
   usage
 fi
 
