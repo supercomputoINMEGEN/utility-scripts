@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# Function to display script usage
+usage() {
+  echo "Usage: $0 -G <numeric> -g <text> -c <yes|no> [-z <text>] [-q <text>] [-m <text>]"
+  echo "  -G <numeric>      GID of the group (not optional)."
+  echo "  -g <text>         Group name (not optional)."
+  echo "  -c <yes|no>       ZFS creation flag (not optional)."
+  echo "  -z <text>         ZFS name (optional)."
+  echo "  -q <text>         Quota (optional)."
+  echo "  -m <text>         Mountpoint (optional)."
+  exit 1
+}
+
 # Define default values for optional arguments
 zfs_create="no"
 zfs_name=""
@@ -29,11 +41,11 @@ while getopts ":G:g:c:z:q:m:" opt; do
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
-      exit 1
+      usage
       ;;
     :)
       echo "Option -$OPTARG requires an argument." >&2
-      exit 1
+      usage
       ;;
   esac
 done
@@ -60,7 +72,7 @@ if [ "$zfs_create" = "yes" ]; then
     fi
   else
     echo "Error: Missing arguments for ZFS creation."
-    exit 1
+    usage
   fi
 fi
 
