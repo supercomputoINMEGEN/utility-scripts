@@ -77,11 +77,5 @@ if [ "$zfs_create" = "yes" ]; then
 fi
 
 # Create the group with the given GID and name
-groupadd -g "$gid" "$group_name"
-
-if [ $? -eq 0 ]; then
-  echo "Group creation and ZFS setup (if applicable) completed successfully."
-else
-  echo "Error: Failed to create Group"
-  exit 1
-fi
+groupadd -g "$gid" "$group_name" \
+&& echo "Group creation and ZFS setup (if applicable) completed successfully."
