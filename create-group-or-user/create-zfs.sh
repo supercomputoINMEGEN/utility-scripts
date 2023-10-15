@@ -30,7 +30,7 @@ if [ -z "$zfsdir_name" ]; then
 fi
 
 # Check if the ZFS directory already exists
-if zfs list | grep -q "$zfsdir_name"; then
+if zfs list | grep -q -w "$zfsdir_name"; then
   echo "Error: ZFS directory '$zfsdir_name' already exists."
   exit 1
 fi
