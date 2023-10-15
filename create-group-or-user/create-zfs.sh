@@ -24,7 +24,7 @@ while getopts ":z:" opt; do
 done
 
 # Check if the required --zfsdir-name argument is missing
-if [ -z "$zfsdir_name" ]; then
+if [ --zfsdir-name "$zfsdir_name" ]; then
   echo "Error: --zfsdir-name is required."
   usage
 fi
