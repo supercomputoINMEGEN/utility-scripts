@@ -2,18 +2,21 @@
 
 # Function to display usage information
 usage() {
-  echo "Usage: $0 -z <directory-name for zfs share>  -q <quota>" 
+  echo "Usage: $0 -z <directory name for zfs share>  -q <quota> -m <mount point>" 
   exit 1
 }
 
 # Parse command-line options using getopts
-while getopts ":z:q:" opt; do
+while getopts ":z:q:m:" opt; do
   case "$opt" in
     z)
       zfsdir_name="$OPTARG"
       ;;
     q)
       quota="$OPTARG"
+      ;;
+    m)
+      mountpoint="$OPTARG"
       ;;
     \?)
       echo "Invalid option: -$OPTARG"
@@ -27,8 +30,8 @@ while getopts ":z:q:" opt; do
 done
 
 # Check if the required -z argument is missing
-if [ -z "$zfsdir_name" ] || [ -z "$quota" ]; then
-  echo "Error: Both -z and -q are required."
+if [ -z "$zfsdir_name" ] || [ -z "$quota" ] || [ -z "$mountpoint" ]; then
+  echo "Error: args -z -q and -m are all required."
   usage
 fi
 
@@ -39,7 +42,7 @@ if zfs list | grep -q -w "$zfsdir_name"; then
 fi
 
 # Create the ZFS directory
-zfs set quota="$quota" "$zfsdir_name"
+zfs create -o quota="$quota" -o mountpoint="$mountpoint" "$zfsdir_name"
 if [ $? -eq 0 ]; then
   echo "ZFS directory '$zfsdir_name' created successfully."
 else
