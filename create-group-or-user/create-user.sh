@@ -82,7 +82,7 @@ useradd \
   "$username" \
 && sudo cp -r /etc/skel/. "$mountpoint" \
 && sudo chmod 750 "$mountpoint" \
-&& printf "hola${_NEWUSER}\nhola${_NEWUSER}\n" | sudo passwd "${_NEWUSER}" \
-&& sudo passwd -e "${_NEWUSER}" \
+&& printf "hola${username}\nhola${username}\n" | sudo passwd "${username}" \
+&& sudo passwd -e "${username}" \
 && chown -R "$username" "$mountpoint" \
 && echo "User $username created successfully."
