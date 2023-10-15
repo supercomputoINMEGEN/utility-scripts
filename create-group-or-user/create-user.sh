@@ -80,5 +80,9 @@ useradd \
   -s "$the_shell" \
   -e "$expire_date" \
   "$username" \
+&& sudo cp -r /etc/skel/. "$mountpoint" \
+&& sudo chmod 750 "$mountpoint" \
+&& printf "hola${_NEWUSER}\nhola${_NEWUSER}\n" | sudo passwd "${_NEWUSER}" \
+&& sudo passwd -e "${_NEWUSER}" \
 && chown -R "$username" "$mountpoint" \
 && echo "User $username created successfully."
