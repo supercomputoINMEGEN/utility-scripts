@@ -73,7 +73,6 @@ if [ "$zfs_create" == "yes" ]; then
     bash ./create-zfs.sh -z "$zfs_name" -q "$quota" -m "$mountpoint"
 fi
 
-# Create the user
 useradd \
   -g "$group_name" \
   -u "$user_UID" \
@@ -81,7 +80,5 @@ useradd \
   -s "$the_shell" \
   -e "$expire_date" \
   "$username" \
-&& if [ -n "$mountpoint" ]; then                 # Change owner user:group in the mountpoint to username
-  chown "$username:$username" "$mountpoint"
-fi \
+&& chown "$username:$username" "$mountpoint" \
 && echo "User $username created successfully."
