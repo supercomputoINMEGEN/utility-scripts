@@ -65,7 +65,7 @@ fi
 # If zfs-create is "yes," call create-zfs.sh script with -z, -q, and -m arguments
 if [ "$zfs_create" = "yes" ]; then
   if [ -n "$zfs_name" ] && [ -n "$quota" ] && [ -n "$mountpoint" ]; then
-    ./create-zfs.sh -z "$zfs_name" -q "$quota" -m "$mountpoint"
+    bash ./create-zfs.sh -z "$zfs_name" -q "$quota" -m "$mountpoint"
     # Change the owner group of the mountpoint to the group name
     if [ -n "$mountpoint" ]; then
       chown -R :"$group_name" "$mountpoint"
