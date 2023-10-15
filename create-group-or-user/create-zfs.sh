@@ -35,6 +35,12 @@ if [ -z "$zfsdir_name" ] || [ -z "$quota" ] || [ -z "$mountpoint" ]; then
   usage
 fi
 
+# Check if the mount point is not empty
+if [ -n "$(ls -A $mountpoint)" ]; then
+  echo "Error: Mount point '$mountpoint' is not empty. Script exiting."
+  exit 1
+fi
+
 # Check if the ZFS directory already exists
 if zfs list | grep -q -w "$zfsdir_name"; then
   echo "Error: ZFS directory '$zfsdir_name' already exists."
