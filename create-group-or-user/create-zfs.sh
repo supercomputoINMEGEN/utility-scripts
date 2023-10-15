@@ -9,7 +9,7 @@ usage() {
 # Parse command-line options using getopts
 while getopts ":z:" opt; do
   case "$opt" in
-    zfsdir-name)
+    z)
       zfsdir_name="$OPTARG"
       ;;
     \?)
