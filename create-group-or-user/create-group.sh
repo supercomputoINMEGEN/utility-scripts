@@ -77,5 +77,6 @@ groupadd -g "$gid" "$group_name" \
     echo "Error: Missing arguments for ZFS creation."
     usage
   fi
-fi \
-&& echo "Group creation and ZFS setup (if applicable) completed successfully."
+fi
+
+echo "Group creation and ZFS setup (if applicable) completed successfully."
