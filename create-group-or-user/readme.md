@@ -13,11 +13,14 @@ _CREATEZFS=yes
 _QUOTA=#"50G"
 ```
 
-
-
 4. Ejecutar la siguiente línea
 
 ```
 sudo bash create-group.sh -G "$_GID" -g "$_GNAME" -c "$_CREATEZFS" -z cajon/labs/"$_GNAME" -q "$_QUOTA" -m /labs/"$_GNAME"
 ```
 
+5. Exportar el labs desde indra. Ejecutar `sudo nano /etc/exports`  
+
+```
+/labs/scbio     central(rw,sync,no_subtree_check,no_root_squash)        notron(rw,sync,no_subtree_check,no_root_squash)
+```
