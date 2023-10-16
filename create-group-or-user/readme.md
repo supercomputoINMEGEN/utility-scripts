@@ -18,6 +18,6 @@ _QUOTA=#"50G"
 4. Ejecutar la siguiente línea
 
 ```
-sudo bash create-group.sh -G "$_GID" -g "$_GNAME" -c "$_CREATEZFS" -z cajon/labs/"_GNAME" -q "$_QUOTA" -m /labs/"_GNAME"
+sudo bash create-group.sh -G "$_GID" -g "$_GNAME" -c "$_CREATEZFS" -z cajon/labs/"$_GNAME" -q "$_QUOTA" -m /labs/"$_GNAME"
 ```
 
