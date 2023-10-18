@@ -1,11 +1,11 @@
-params.str = 'Hello world!'
+params.str = '1234567890'
 
 process splitLetters {
     output:
     path 'chunk_*'
 
     """
-    printf '${params.str}' | split -b 6 - chunk_
+    printf '${params.str}' | split -b 1 - chunk_
     """
 }
 
@@ -17,7 +17,7 @@ process convertToUpper {
     stdout
 
     """
-    cat $x | tr '[a-z]' '[A-Z]' && echo "Hola desde \$(hostname)"
+    cat $x && echo " Hola desde \$(hostname)"
     """
 }
 
