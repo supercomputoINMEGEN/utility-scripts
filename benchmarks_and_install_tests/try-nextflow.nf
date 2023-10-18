@@ -5,7 +5,7 @@ process splitLetters {
     path 'chunk_*'
 
     """
-    printf '${params.str}' | split -b 1 - chunk_
+    sleep 10 && printf '${params.str}' | split -b 1 - chunk_
     """
 }
 
@@ -17,7 +17,7 @@ process convertToUpper {
     stdout
 
     """
-    cat $x && echo " Hola desde \$(hostname)"
+    sleep 30 && cat $x && echo " Hola desde \$(hostname)"
     """
 }
 
