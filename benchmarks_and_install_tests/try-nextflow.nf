@@ -17,7 +17,7 @@ process convertToUpper {
     stdout
 
     """
-    cat $x | tr '[a-z]' '[A-Z]'
+    cat $x | tr '[a-z]' '[A-Z]' && echo "Hola desde \$(hostname)"
     """
 }
 
