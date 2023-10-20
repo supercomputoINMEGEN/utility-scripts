@@ -133,4 +133,8 @@ sudo mkdir /home/"$_UNAME" \
 /home/iaguilar  -fstype=nfs central:/home/iaguilar
 ```
 
-11. Reinicar el servicio de autofs `sudo systemctl restart autofs && mount -t autofs | grep "$_UNAME"`    
+11. Reinicar el servicio de autofs    
+
+```
+sudo systemctl restart autofs && mount -t autofs | grep "$_UNAME"
+```
