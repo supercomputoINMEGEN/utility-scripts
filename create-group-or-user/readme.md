@@ -94,7 +94,11 @@ sudo bash create-user.sh -G "$_GNAME" -i "$_UID" -u "$_UNAME" -d "$_EXPIRE" -s "
 
 ```
 
-5. Reinicar el servicio de exporte `sudo systemctl restart nfs-kernel-server && sudo exportfs -v | grep "$_UNAME"`    
+5. Reinicar el servicio de exporte     
+
+```
+sudo systemctl restart nfs-kernel-server && sudo exportfs -v | grep "$_UNAME"
+```
 
 ## En todos los demás nodos
 
