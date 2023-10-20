@@ -86,9 +86,8 @@ _QUOTA=#"50G"
 
 ```
 sudo bash create-user.sh -G "$_GNAME" -i "$_UID" -u "$_UNAME" -d "$_EXPIRE" -s "$_SHELL" -c "$_CREATEZFS" -z los_homes/"$_UNAME" -q "$_QUOTA" \
-&& bash /home/programs/miniconda_installer/Miniconda3-latest-Linux-x86_64.sh -b \
-&& ~/miniconda3/bin/conda init bash \
-&& id "$_UID"
+&& id "$_UID" \
+&& sudo -u tester bash -c 'bash /home/programs/miniconda_installer/Miniconda3-latest-Linux-x86_64.sh -b && ~/miniconda3/bin/conda init bash && nextflow -h'
 ```
 
 5. Exportar el home desde Central. Ejecutar `sudo nano /etc/exports` . Por ejemplo agregar en la última línea:    
