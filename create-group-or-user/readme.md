@@ -28,7 +28,7 @@ sudo bash create-group.sh -G "$_GID" -g "$_GNAME" -c "$_CREATEZFS" -z cajon/labs
 5. Reinicar el servicio de exporte
 
 ```
-sudo systemctl restart nfs-kernel-server && sudo exportfs -v sudo exportfs -v | grep "$_GNAME"
+sudo systemctl restart nfs-kernel-server && sudo exportfs -v | grep "$_GNAME"
 ```
 ## En todos los demás nodos
 
