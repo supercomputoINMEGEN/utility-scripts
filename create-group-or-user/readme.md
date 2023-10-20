@@ -25,8 +25,11 @@ sudo bash create-group.sh -G "$_GID" -g "$_GNAME" -c "$_CREATEZFS" -z cajon/labs
 /labs/scbio central(rw,sync,no_subtree_check,no_root_squash)    notron(rw,sync,no_subtree_check,no_root_squash)
 ```
 
-5. Reinicar el servicio de exporte `sudo systemctl restart nfs-kernel-server && sudo exportfs -v sudo exportfs -v | grep "$_GNAME"`    
+5. Reinicar el servicio de exporte
 
+```
+sudo systemctl restart nfs-kernel-server && sudo exportfs -v sudo exportfs -v | grep "$_GNAME"
+```
 ## En todos los demás nodos
 
 7. Llenar las siguientes variables en un bloc de notas o texto plano  
