@@ -57,7 +57,11 @@ sudo mkdir /labs/"$_GNAME" \
 /labs/scbio -fstype=nfs indra:/labs/scbio
 ```
 
-11. Reinicar el servicio de autofs `sudo systemctl restart autofs && mount -t autofs | grep "$_GNAME"`    
+11. Reinicar el servicio de autofs    
+
+```
+sudo systemctl restart autofs && mount -t autofs | grep "$_GNAME"
+```
 
 # Instrucciones para crear un nuevo usuario ==  
 
