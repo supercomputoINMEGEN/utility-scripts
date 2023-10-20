@@ -65,6 +65,8 @@ sudo systemctl restart autofs && mount -t autofs | grep "$_GNAME"
 
 # Instrucciones para crear un nuevo usuario ==  
 
+## En Central (contiene el zfs los_homes/ )  
+
 1. Descargar este git  
 2. Revisar el padron de usuarios y grupos de supercomputo, para definir que UID y UNAME le toca  
 2. Revisar que el grupo al que se va a asignar ya existe en el server   
@@ -84,10 +86,12 @@ _QUOTA=#"50G"
 
 ```
 sudo bash create-user.sh -G "$_GNAME" -i "$_UID" -u "$_UNAME" -d "$_EXPIRE" -s "$_SHELL" -c "$_CREATEZFS" -z los_homes/"$_UNAME" -q "$_QUOTA" \
+&& bash /home/programs/miniconda_installer/Miniconda3-latest-Linux-x86_64.sh -b \
+&& ~/miniconda3/bin/conda init bash \
 && id "$_UID"
 ```
 
-5. Exportar el labs desde indra. Ejecutar `sudo nano /etc/exports` . Por ejemplo agregar en la última línea:    
+5. Exportar el home desde Central. Ejecutar `sudo nano /etc/exports` . Por ejemplo agregar en la última línea:    
 
 ```
 /home/iaguilar  indra(rw,sync,no_subtree_check,no_root_squash)  notron(rw,sync,no_subtree_check,no_root_squash)
@@ -127,7 +131,7 @@ sudo mkdir /home/"$_UNAME" \
 && id "$_UID"
 ```
 
-10. Importar el home que viene de central. Ejecutar `sudo nano /etc/auto.homes` . Por ejemplo agregar en la última línea:    
+10. Importar el home que viene de Central. Ejecutar `sudo nano /etc/auto.homes` . Por ejemplo agregar en la última línea:    
 
 ```
 /home/iaguilar  -fstype=nfs central:/home/iaguilar
