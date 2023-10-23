@@ -127,7 +127,7 @@ _CREATEZFS="no"
 ```
 sudo mkdir /home/"$_UNAME" \
 && sudo bash create-user.sh -G "$_GNAME" -i "$_UID" -u "$_UNAME" -d "$_EXPIRE" -s no -c no \
-&& id "$_UID" && cd ~ && nextflow -h && sudo usermod -aG docker "$_UNAME"
+&& id "$_UID" && cd ~ && sudo usermod -aG docker "$_UNAME"
 ```
 
 10. Importar el home que viene de Central. Ejecutar `sudo nano /etc/auto.homes` . Por ejemplo agregar en la última línea:    
