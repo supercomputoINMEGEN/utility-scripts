@@ -87,7 +87,7 @@ _QUOTA=#"50G"
 ```
 sudo bash create-user.sh -G "$_GNAME" -i "$_UID" -u "$_UNAME" -d "$_EXPIRE" -s "$_SHELL" -c "$_CREATEZFS" -z los_homes/"$_UNAME" -q "$_QUOTA" \
 && id "$_UID" \
-&& sudo -u "$_UNAME" bash -c 'bash /home/programs/miniconda_installer/Miniconda3-latest-Linux-x86_64.sh -b && ~/miniconda3/bin/conda init bash && cd ~ && nextflow -h'
+&& sudo -u "$_UNAME" bash -c 'bash /home/programs/miniconda_installer/Miniconda3-latest-Linux-x86_64.sh -b && ~/miniconda3/bin/conda init bash && cd ~ && nextflow -h' && sudo usermod -aG docker "$_UNAME"
 ```
 
 5. Exportar el home desde Central. Ejecutar `sudo nano /etc/exports` . Por ejemplo agregar en la última línea:    
@@ -127,7 +127,7 @@ _CREATEZFS="no"
 ```
 sudo mkdir /home/"$_UNAME" \
 && sudo bash create-user.sh -G "$_GNAME" -i "$_UID" -u "$_UNAME" -d "$_EXPIRE" -s no -c no \
-&& id "$_UID"
+&& id "$_UID" && cd ~ && nextflow -h' && sudo usermod -aG docker "$_UNAME"
 ```
 
 10. Importar el home que viene de Central. Ejecutar `sudo nano /etc/auto.homes` . Por ejemplo agregar en la última línea:    
